@@ -1,54 +1,3 @@
-<?php
-// Diccionarios para etiquetas
-$plazas_areas = array(1 => "Mayores", 2 => "Discapacidad (DI)", 3 => "Salud mental", 4 => "Mayores/Discapacidad(M/D)");
-$plazas_tipos = array(1 => "Residencia", 2 => "Diurna", 3 => "Alojamiento tutelado", 4 => "Domicilio", 5 => "SPAP", 6 => "Teleasistencia basica", 7 => "SAD", 8 => "Teleasistencia avanzada");
-$plazas_requerimientos = array(1 => "Alto", 2 => "Medio", 3 => "Bajo", 4 => "Alto/Medio");
-$plazas_perfiles = array(1 => "No aplica", 2 => "Intelectual sin NTP", 3 => "Intelectual con NTP (DI NTP)", 4 => "Físico", 5 => "Demencia", 6 => "Psicogeriatría (DI PS)", 7 => "Trastorno conducta (DI T)", 8 => "Intelectual con NTP+ (DI I)", 9 => "Mayores (MAYSA)", 10 => "Discapacidad Intelectual Salud Mental (DI SM)", 11 => "Mayores/Discapacidad (M/D)");
-
-// ==================== LISTA COMPLETA DE CENTROS ====================
-$centros_lista = [
-    ['nombre' => 'Centro Residencial La Dehesa', 'descripcion' => 'S.C. de La Palma - Residencia de Mayores', 'lat' => 28.69652670, 'lng' => -17.76998623, 'url' => 'https://dependencialapalma.com/red-insular/mayores/residencia-la-dehesa/', 'municipio' => 'santa-cruz', 'area' => 1, 'tipo_area' => 1, 'requerimiento' => 4, 'perfil' => 0],
-    ['nombre' => 'Centro Residencial Puntallana', 'descripcion' => 'Residencia de Mayores', 'lat' => 28.73974236, 'lng' => -17.74573970, 'url' => 'https://dependencialapalma.com/red-insular/mayores/residencia-puntallana/', 'municipio' => 'puntallana', 'area' => 1, 'tipo_area' => 1, 'requerimiento' => 4, 'perfil' => 0],
-    ['nombre' => 'Centro Residencial Garafía', 'descripcion' => 'Residencia de Mayores', 'lat' => 28.82984070, 'lng' => -17.94620662, 'url' => 'https://dependencialapalma.com/red-insular/mayores/residencia-garafia/', 'municipio' => 'garafia', 'area' => 1, 'tipo_area' => 1, 'requerimiento' => 4, 'perfil' => 0],
-    ['nombre' => 'Centro Residencial Barlovento', 'descripcion' => 'Residencia de Mayores', 'lat' => 28.82842285, 'lng' => -17.80342002, 'url' => 'https://dependencialapalma.com/red-insular/mayores/residencia-barlovento/', 'municipio' => 'barlovento', 'area' => 1, 'tipo_area' => 1, 'requerimiento' => 4, 'perfil' => 0],
-    ['nombre' => 'Centro Residencial Tijarafe', 'descripcion' => 'Residencia de Mayores', 'lat' => 28.71047999, 'lng' => -17.95639851, 'url' => 'https://dependencialapalma.com/red-insular/mayores/residencia-tijarafe/', 'municipio' => 'tijarafe', 'area' => 1, 'tipo_area' => 1, 'requerimiento' => 4, 'perfil' => 0],
-    ['nombre' => 'Centro Residencial San Andrés y Sauces', 'descripcion' => 'Residencia de Mayores', 'lat' => 28.80482430, 'lng' => -17.77494340, 'url' => 'https://dependencialapalma.com/red-insular/mayores/residencia-san-andres-y-sauces/', 'municipio' => 'san-andres', 'area' => 1, 'tipo_area' => 1, 'requerimiento' => 4, 'perfil' => 0],
-    ['nombre' => 'Centro Residencial Villa de Mazo', 'descripcion' => 'Casa de Acogida Villa de Mazo', 'lat' => 28.60441782, 'lng' => -17.77973514, 'url' => 'https://dependencialapalma.com/red-insular/mayores/casa-de-acogida-villa-de-mazo/', 'municipio' => 'mazo', 'area' => 1, 'tipo_area' => 1, 'requerimiento' => 4, 'perfil' => 0],
-    ['nombre' => 'Centro Residencial Sor Josefa Argote', 'descripcion' => 'Centro Asistencial de Mayores', 'lat' => 28.82785330, 'lng' => -17.85933660, 'url' => 'https://dependencialapalma.com/red-insular/mayores/centro-asistencial-de-mayores-sor-josefa-argote/', 'municipio' => 'garafia', 'area' => 1, 'tipo_area' => 1, 'requerimiento' => 3, 'perfil' => 0],
-    ['nombre' => 'Centro Residencial Las Indias', 'descripcion' => 'Fuencaliente - Centro de Acogida', 'lat' => 28.50204250, 'lng' => -17.86368570, 'url' => 'https://dependencialapalma.com/red-insular/mayores/centro-de-acogida-de-las-indias/', 'municipio' => 'fuencaliente', 'area' => 1, 'tipo_area' => 1, 'requerimiento' => 4, 'perfil' => 0],
-    ['nombre' => 'Centro Residencial Nina Jaubert (Mayores)', 'descripcion' => 'Centro Residencial de Personas Mayores', 'lat' => 28.64495098, 'lng' => -17.78767465, 'url' => 'https://dependencialapalma.com/red-insular/mayores/centro-residencial-de-personas-mayores-nina-jaubert/', 'municipio' => 'brena-alta', 'area' => 1, 'tipo_area' => 1, 'requerimiento' => 4, 'perfil' => 0],
-    ['nombre' => 'Centro Residencial Puntagorda', 'descripcion' => 'Residencia de Mayores', 'lat' => 28.77046782, 'lng' => -17.97879754, 'url' => 'https://dependencialapalma.com/red-insular/mayores/centro-residencial-puntagorda/', 'municipio' => 'puntagorda', 'area' => 1, 'tipo_area' => 1, 'requerimiento' => 4, 'perfil' => 0],
-    ['nombre' => 'Centro Residencial Fundación Canaria Solidaridad', 'descripcion' => 'Los Llanos de Aridane', 'lat' => 28.65892930, 'lng' => -17.91121729, 'url' => 'https://dependencialapalma.com/red-insular/mayores/centro-residencial-fundacion-canaria-solidaridad-la-palma/', 'municipio' => 'los-llanos', 'area' => 1, 'tipo_area' => 1, 'requerimiento' => 3, 'perfil' => 0],
-    ['nombre' => 'Centro Residencial Tazacorte', 'descripcion' => 'Residencia de Mayores', 'lat' => 28.64472954, 'lng' => -17.93402486, 'url' => 'https://dependencialapalma.com/red-insular/mayores/residencia-de-mayores-de-tazacorte/', 'municipio' => 'tazacorte', 'area' => 1, 'tipo_area' => 1, 'requerimiento' => 4, 'perfil' => 0],
-    ['nombre' => 'Centro de Día San Andrés y Sauces', 'descripcion' => 'Atención Diurna', 'lat' => 28.80521915, 'lng' => -17.77500241, 'url' => 'https://dependencialapalma.com/red-insular/mayores/centro-de-dia-de-san-andres-y-sauces/', 'municipio' => 'san-andres', 'area' => 1, 'tipo_area' => 2, 'requerimiento' => 0, 'perfil' => 0],
-    ['nombre' => 'Centro de Día Los Llanos de Aridane', 'descripcion' => 'Atención Diurna', 'lat' => 28.66010907, 'lng' => -17.91406123, 'url' => 'https://dependencialapalma.com/red-insular/mayores/centro-de-dia-de-los-llanos-de-aridane/', 'municipio' => 'los-llanos', 'area' => 1, 'tipo_area' => 2, 'requerimiento' => 0, 'perfil' => 0],
-    ['nombre' => 'Centro de Día Gallegos', 'descripcion' => 'Atención Diurna', 'lat' => 28.82899891, 'lng' => -17.83991170, 'url' => 'https://dependencialapalma.com/red-insular/mayores/centro-de-dia-de-gallegos/', 'municipio' => 'barlovento', 'area' => 1, 'tipo_area' => 2, 'requerimiento' => 0, 'perfil' => 0],
-    ['nombre' => 'Centro de Día Tijarafe', 'descripcion' => 'Atención Diurna', 'lat' => 28.71034870, 'lng' => -17.95652530, 'url' => 'https://dependencialapalma.com/red-insular/mayores/centro-de-dia-de-tijarafe/', 'municipio' => 'tijarafe', 'area' => 1, 'tipo_area' => 2, 'requerimiento' => 0, 'perfil' => 0],
-    ['nombre' => 'Centro de Día Tazacorte', 'descripcion' => 'Atención Diurna', 'lat' => 28.64435000, 'lng' => -17.93382850, 'url' => 'https://dependencialapalma.com/red-insular/mayores/centro-de-dia-tazacorte/', 'municipio' => 'tazacorte', 'area' => 1, 'tipo_area' => 2, 'requerimiento' => 0, 'perfil' => 0],
-    ['nombre' => 'Centro de Día Barlovento', 'descripcion' => 'Atención Diurna', 'lat' => 28.82844060, 'lng' => -17.80374097, 'url' => 'https://dependencialapalma.com/red-insular/mayores/centro-de-dia-de-barlovento/', 'municipio' => 'barlovento', 'area' => 1, 'tipo_area' => 2, 'requerimiento' => 0, 'perfil' => 0],
-    ['nombre' => 'Centro de Día Villa de Mazo', 'descripcion' => 'Atención Diurna', 'lat' => 28.60424897, 'lng' => -17.77959739, 'url' => 'https://dependencialapalma.com/red-insular/mayores/centro-de-dia-de-villa-de-mazo/', 'municipio' => 'mazo', 'area' => 1, 'tipo_area' => 2, 'requerimiento' => 0, 'perfil' => 0],
-    ['nombre' => 'Centro de Día Breña Alta', 'descripcion' => 'Atención Diurna', 'lat' => 28.66189032, 'lng' => -17.78810882, 'url' => 'https://dependencialapalma.com/red-insular/mayores/centro-de-dia-de-brena-alta/', 'municipio' => 'brena-alta', 'area' => 1, 'tipo_area' => 2, 'requerimiento' => 0, 'perfil' => 0],
-    ['nombre' => 'Centro de Día Puntallana', 'descripcion' => 'Atención Diurna', 'lat' => 28.73959180, 'lng' => -17.74573970, 'url' => 'https://dependencialapalma.com/red-insular/mayores/centro-de-dia-de-puntallana/', 'municipio' => 'puntallana', 'area' => 1, 'tipo_area' => 2, 'requerimiento' => 0, 'perfil' => 0],
-    ['nombre' => 'Centro de Día Breña Baja', 'descripcion' => 'Atención Diurna', 'lat' => 28.64116645, 'lng' => -17.78192483, 'url' => 'https://dependencialapalma.com/red-insular/mayores/centro-de-dia-de-brena-baja/', 'municipio' => 'brena-baja', 'area' => 2, 'tipo_area' => 2, 'requerimiento' => 0, 'perfil' => 2],
-    ['nombre' => 'Centro de Día El Paso', 'descripcion' => 'Atención Diurna', 'lat' => 28.65277244, 'lng' => -17.88056996, 'url' => 'https://dependencialapalma.com/red-insular/mayores/centro-de-dia-de-el-paso/', 'municipio' => 'el-paso', 'area' => 1, 'tipo_area' => 2, 'requerimiento' => 0, 'perfil' => 0],
-    ['nombre' => 'AFA La Palma', 'descripcion' => 'Asociación Alzheimer', 'lat' => 28.65839130, 'lng' => -17.90352780, 'url' => 'https://dependencialapalma.com/red-insular/mayores/asociacion-de-familiares-de-enfermos-de-alzheimer-afa-la-palma/', 'municipio' => 'los-llanos', 'area' => 1, 'tipo_area' => 2, 'requerimiento' => 0, 'perfil' => 2],
-    ['nombre' => 'Centro Residencial Triana', 'descripcion' => 'Residencia Discapacidad', 'lat' => 28.65059708, 'lng' => -17.90929440, 'url' => 'https://dependencialapalma.com/red-insular/discapacidad/residencia-triana/', 'municipio' => 'los-llanos', 'area' => 2, 'tipo_area' => 1, 'requerimiento' => 4, 'perfil' => 0],
-    ['nombre' => 'Centro de Día Triana', 'descripcion' => 'Atención Especializada', 'lat' => 28.65016620, 'lng' => -17.90903192, 'url' => 'https://dependencialapalma.com/red-insular/discapacidad/centro-de-dia-triana/', 'municipio' => 'los-llanos', 'area' => 2, 'tipo_area' => 2, 'requerimiento' => 0, 'perfil' => 2],
-    ['nombre' => 'Centro Residencial Nina Jaubert (Discapacidad)', 'descripcion' => 'Residencia Discapacidad', 'lat' => 28.64460464, 'lng' => -17.78749567, 'url' => 'https://dependencialapalma.com/red-insular/discapacidad/residencia-nina-jaubert/', 'municipio' => 'brena-alta', 'area' => 2, 'tipo_area' => 1, 'requerimiento' => 3, 'perfil' => 7],
-    ['nombre' => 'Residencia Villaflora', 'descripcion' => 'Rehabilitación Psicosocial', 'lat' => 28.65612464, 'lng' => -17.76796509, 'url' => 'https://dependencialapalma.com/red-insular/discapacidad/residencia-villaflora/', 'municipio' => 'brena-baja', 'area' => 2, 'tipo_area' => 1, 'requerimiento' => 0, 'perfil' => 9],
-    ['nombre' => 'Hogar Funcional Mi Casa', 'descripcion' => 'Discapacidad', 'lat' => 28.66115176, 'lng' => -17.91168512, 'url' => 'https://dependencialapalma.com/red-insular/discapacidad/proyecto-mi-casa/', 'municipio' => 'los-llanos', 'area' => 2, 'tipo_area' => 3, 'requerimiento' => 4, 'perfil' => 0],
-    ['nombre' => 'Centro ocupacional Garehagua', 'descripcion' => 'Discapacidad', 'lat' => 28.60493951, 'lng' => -17.77800525, 'url' => 'https://dependencialapalma.com/red-insular/discapacidad/centro-ocupacional-garehagua/', 'municipio' => 'mazo', 'area' => 2, 'tipo_area' => 2, 'requerimiento' => 0, 'perfil' => 2],
-    ['nombre' => 'Centro ocupacional La Tisera', 'descripcion' => 'Discapacidad', 'lat' => 28.80476820, 'lng' => -17.77245570, 'url' => 'https://dependencialapalma.com/red-insular/discapacidad/centro-ocupacional-la-tisera/', 'municipio' => 'san-andres', 'area' => 2, 'tipo_area' => 2, 'requerimiento' => 0, 'perfil' => 2],
-    ['nombre' => 'Centro ocupacional Noroeste-La Traviesa', 'descripcion' => 'Discapacidad', 'lat' => 28.76536310, 'lng' => -17.97836890, 'url' => 'https://dependencialapalma.com/red-insular/discapacidad/centro-ocupacional-la-traviesa/', 'municipio' => 'puntagorda', 'area' => 2, 'tipo_area' => 2, 'requerimiento' => 0, 'perfil' => 2],
-    ['nombre' => 'Centro ocupacional Breña Alta', 'descripcion' => 'Discapacidad', 'lat' => 28.66257967, 'lng' => -17.78299055, 'url' => 'https://dependencialapalma.com/red-insular/discapacidad/centro-ocupacional-brena-alta/', 'municipio' => 'brena-alta', 'area' => 2, 'tipo_area' => 2, 'requerimiento' => 0, 'perfil' => 2],
-    ['nombre' => 'Centro ocupacional Taburiente', 'descripcion' => 'Discapacidad', 'lat' => 28.66200824, 'lng' => -17.91206289, 'url' => 'https://dependencialapalma.com/red-insular/discapacidad/centro-ocupacional-taburiente/', 'municipio' => 'los-llanos', 'area' => 2, 'tipo_area' => 2, 'requerimiento' => 0, 'perfil' => 2],
-    ['nombre' => 'Centro de Día NEP', 'descripcion' => 'Discapacidad', 'lat' => 28.58559414, 'lng' => -17.88353542, 'url' => 'https://dependencialapalma.com/red-insular/discapacidad/centro-de-dia-nep/', 'municipio' => 'los-llanos', 'area' => 2, 'tipo_area' => 2, 'requerimiento' => 0, 'perfil' => 2],
-    ['nombre' => 'Centro de Día Dorador', 'descripcion' => 'Discapacidad', 'lat' => 28.70185720, 'lng' => -17.77271520, 'url' => 'https://dependencialapalma.com/red-insular/discapacidad/centro-de-dia-dorador/', 'municipio' => 'santa-cruz', 'area' => 2, 'tipo_area' => 2, 'requerimiento' => 0, 'perfil' => 2],
-    ['nombre' => 'Centro de rehabilitación psicosocial Los Pedregales', 'descripcion' => 'Discapacidad', 'lat' => 28.66575592, 'lng' => -17.90976440, 'url' => 'https://dependencialapalma.com/red-insular/discapacidad/centro-de-rehabilitacion-psicosocial-los-pedregales/', 'municipio' => 'los-llanos', 'area' => 2, 'tipo_area' => 2, 'requerimiento' => 0, 'perfil' => 9],
-    ['nombre' => 'Fundación Canaria Isonorte', 'descripcion' => 'Servicio de Autonomía Personal', 'lat' => 28.80530583, 'lng' => -17.77511368, 'url' => 'https://dependencialapalma.com/red-insular/mayores/servicio-de-promocion-de-la-autonomia-personal-para-personas-mayores-de-la-fundacion-canaria-isonorte/', 'municipio' => 'san-andres', 'area' => 2, 'tipo_area' => 2, 'requerimiento' => 0, 'perfil' => 9]
-];
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -135,9 +84,6 @@ $centros_lista = [
             box-sizing: border-box; 
             cursor: pointer; 
         }
-        select option {
-            padding: 8px;
-        }
         .seccion-lista { 
             background: white; 
             border-radius: 12px; 
@@ -169,26 +115,11 @@ $centros_lista = [
         .tarjeta-centro:hover { 
             transform: translateY(-2px); 
             box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
-            border-color: #cbd5e1; 
             cursor: pointer; 
         }
-        .tarjeta-centro h3 { 
-            margin: 0 0 8px 0; 
-            font-size: 14px; 
-            color: #2c3e50; 
-        }
-        .tarjeta-centro p { 
-            margin: 0 0 10px 0; 
-            font-size: 12px; 
-            color: #64748b; 
-            line-height: 1.4; 
-        }
-        .btn-enlace { 
-            font-size: 12px; 
-            color: #2563eb; 
-            text-decoration: none; 
-            font-weight: bold; 
-        }
+        .tarjeta-centro h3 { margin: 0 0 8px 0; font-size: 14px; color: #2c3e50; }
+        .tarjeta-centro p { margin: 0 0 10px 0; font-size: 12px; color: #64748b; }
+        .btn-enlace { font-size: 12px; color: #2563eb; text-decoration: none; font-weight: bold; }
         #contenedor-mapa { 
             height: 100%; 
             width: 100%; 
@@ -196,7 +127,6 @@ $centros_lista = [
             box-shadow: 0 5px 20px rgba(0,0,0,0.15); 
             border: 4px solid white; 
         }
-
         .img-icon-custom {
             width: 18px;
             height: 18px;
@@ -206,12 +136,8 @@ $centros_lista = [
             transform: translateX(-50%);
             object-fit: contain;
         }
-
         @media (max-width: 900px) {
-            .contenido-dinamico { 
-                grid-template-columns: 1fr; 
-                height: auto; 
-            }
+            .contenido-dinamico { grid-template-columns: 1fr; height: auto; }
             .seccion-lista { height: 400px; }
             #contenedor-mapa { height: 450px; }
         }
@@ -252,7 +178,10 @@ $centros_lista = [
                     <label>Área:</label>
                     <select id="filtro-area" onchange="actualizarMapa()">
                         <option value="0">Cualquiera</option>
-                        <?php foreach($plazas_areas as $key => $val) echo "<option value='$key'>$val</option>"; ?>
+                        <option value="1">Mayores</option>
+                        <option value="2">Discapacidad (DI)</option>
+                        <option value="3">Salud mental</option>
+                        <option value="4">Mayores/Discapacidad(M/D)</option>
                     </select>
                 </div>
 
@@ -260,7 +189,14 @@ $centros_lista = [
                     <label>Tipo:</label>
                     <select id="filtro-tipo_area" onchange="actualizarMapa()">
                         <option value="0">Cualquiera</option>
-                        <?php foreach($plazas_tipos as $key => $val) echo "<option value='$key'>$val</option>"; ?>
+                        <option value="1">Residencia</option>
+                        <option value="2">Diurna</option>
+                        <option value="3">Alojamiento tutelado</option>
+                        <option value="4">Domicilio</option>
+                        <option value="5">SPAP</option>
+                        <option value="6">Teleasistencia basica</option>
+                        <option value="7">SAD</option>
+                        <option value="8">Teleasistencia avanzada</option>
                     </select>
                 </div>
 
@@ -268,7 +204,10 @@ $centros_lista = [
                     <label>Requerimiento:</label>
                     <select id="filtro-requerimiento" onchange="actualizarMapa()">
                         <option value="0">Cualquiera</option>
-                        <?php foreach($plazas_requerimientos as $key => $val) echo "<option value='$key'>$val</option>"; ?>
+                        <option value="1">Alto</option>
+                        <option value="2">Medio</option>
+                        <option value="3">Bajo</option>
+                        <option value="4">Alto/Medio</option>
                     </select>
                 </div>
 
@@ -276,7 +215,17 @@ $centros_lista = [
                     <label>Perfil:</label>
                     <select id="filtro-perfil" onchange="actualizarMapa()">
                         <option value="0">Cualquiera</option>
-                        <?php foreach($plazas_perfiles as $key => $val) echo "<option value='$key'>$val</option>"; ?>
+                        <option value="1">No aplica</option>
+                        <option value="2">Intelectual sin NTP</option>
+                        <option value="3">Intelectual con NTP (DI NTP)</option>
+                        <option value="4">Físico</option>
+                        <option value="5">Demencia</option>
+                        <option value="6">Psicogeriatría (DI PS)</option>
+                        <option value="7">Trastorno conducta (DI T)</option>
+                        <option value="8">Intelectual con NTP+ (DI I)</option>
+                        <option value="9">Mayores (MAYSA)</option>
+                        <option value="10">Discapacidad Intelectual Salud Mental (DI SM)</option>
+                        <option value="11">Mayores/Discapacidad (M/D)</option>
                     </select>
                 </div>
             </div>
@@ -295,7 +244,48 @@ $centros_lista = [
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
 
 <script>
-    const centrosArray = <?php echo json_encode($centros_lista); ?>;
+    // Datos convertidos de PHP a JavaScript
+    const centrosArray = [
+        {nombre: 'Centro Residencial La Dehesa', descripcion: 'S.C. de La Palma - Residencia de Mayores', lat: 28.69652670, lng: -17.76998623, url: 'https://dependencialapalma.com/red-insular/mayores/residencia-la-dehesa/', municipio: 'santa-cruz', area: 1, tipo_area: 1, requerimiento: 4, perfil: 0},
+        {nombre: 'Centro Residencial Puntallana', descripcion: 'Residencia de Mayores', lat: 28.73974236, lng: -17.74573970, url: 'https://dependencialapalma.com/red-insular/mayores/residencia-puntallana/', municipio: 'puntallana', area: 1, tipo_area: 1, requerimiento: 4, perfil: 0},
+        {nombre: 'Centro Residencial Garafía', descripcion: 'Residencia de Mayores', lat: 28.82984070, lng: -17.94620662, url: 'https://dependencialapalma.com/red-insular/mayores/residencia-garafia/', municipio: 'garafia', area: 1, tipo_area: 1, requerimiento: 4, perfil: 0},
+        {nombre: 'Centro Residencial Barlovento', descripcion: 'Residencia de Mayores', lat: 28.82842285, lng: -17.80342002, url: 'https://dependencialapalma.com/red-insular/mayores/residencia-barlovento/', municipio: 'barlovento', area: 1, tipo_area: 1, requerimiento: 4, perfil: 0},
+        {nombre: 'Centro Residencial Tijarafe', descripcion: 'Residencia de Mayores', lat: 28.71047999, lng: -17.95639851, url: 'https://dependencialapalma.com/red-insular/mayores/residencia-tijarafe/', municipio: 'tijarafe', area: 1, tipo_area: 1, requerimiento: 4, perfil: 0},
+        {nombre: 'Centro Residencial San Andrés y Sauces', descripcion: 'Residencia de Mayores', lat: 28.80482430, lng: -17.77494340, url: 'https://dependencialapalma.com/red-insular/mayores/residencia-san-andres-y-sauces/', municipio: 'san-andres', area: 1, tipo_area: 1, requerimiento: 4, perfil: 0},
+        {nombre: 'Centro Residencial Villa de Mazo', descripcion: 'Casa de Acogida Villa de Mazo', lat: 28.60441782, lng: -17.77973514, url: 'https://dependencialapalma.com/red-insular/mayores/casa-de-acogida-villa-de-mazo/', municipio: 'mazo', area: 1, tipo_area: 1, requerimiento: 4, perfil: 0},
+        {nombre: 'Centro Residencial Sor Josefa Argote', descripcion: 'Centro Asistencial de Mayores', lat: 28.82785330, lng: -17.85933660, url: 'https://dependencialapalma.com/red-insular/mayores/centro-asistencial-de-mayores-sor-josefa-argote/', municipio: 'garafia', area: 1, tipo_area: 1, requerimiento: 3, perfil: 0},
+        {nombre: 'Centro Residencial Las Indias', descripcion: 'Fuencaliente - Centro de Acogida', lat: 28.50204250, lng: -17.86368570, url: 'https://dependencialapalma.com/red-insular/mayores/centro-de-acogida-de-las-indias/', municipio: 'fuencaliente', area: 1, tipo_area: 1, requerimiento: 4, perfil: 0},
+        {nombre: 'Centro Residencial Nina Jaubert (Mayores)', descripcion: 'Centro Residencial de Personas Mayores', lat: 28.64495098, lng: -17.78767465, url: 'https://dependencialapalma.com/red-insular/mayores/centro-residencial-de-personas-mayores-nina-jaubert/', municipio: 'brena-alta', area: 1, tipo_area: 1, requerimiento: 4, perfil: 0},
+        {nombre: 'Centro Residencial Puntagorda', descripcion: 'Residencia de Mayores', lat: 28.77046782, lng: -17.97879754, url: 'https://dependencialapalma.com/red-insular/mayores/centro-residencial-puntagorda/', municipio: 'puntagorda', area: 1, tipo_area: 1, requerimiento: 4, perfil: 0},
+        {nombre: 'Centro Residencial Fundación Canaria Solidaridad', descripcion: 'Los Llanos de Aridane', lat: 28.65892930, lng: -17.91121729, url: 'https://dependencialapalma.com/red-insular/mayores/centro-residencial-fundacion-canaria-solidaridad-la-palma/', municipio: 'los-llanos', area: 1, tipo_area: 1, requerimiento: 3, perfil: 0},
+        {nombre: 'Centro Residencial Tazacorte', descripcion: 'Residencia de Mayores', lat: 28.64472954, lng: -17.93402486, url: 'https://dependencialapalma.com/red-insular/mayores/residencia-de-mayores-de-tazacorte/', municipio: 'tazacorte', area: 1, tipo_area: 1, requerimiento: 4, perfil: 0},
+        {nombre: 'Centro de Día San Andrés y Sauces', descripcion: 'Atención Diurna', lat: 28.80521915, lng: -17.77500241, url: 'https://dependencialapalma.com/red-insular/mayores/centro-de-dia-de-san-andres-y-sauces/', municipio: 'san-andres', area: 1, tipo_area: 2, requerimiento: 0, perfil: 0},
+        {nombre: 'Centro de Día Los Llanos de Aridane', descripcion: 'Atención Diurna', lat: 28.66010907, lng: -17.91406123, url: 'https://dependencialapalma.com/red-insular/mayores/centro-de-dia-de-los-llanos-de-aridane/', municipio: 'los-llanos', area: 1, tipo_area: 2, requerimiento: 0, perfil: 0},
+        {nombre: 'Centro de Día Gallegos', descripcion: 'Atención Diurna', lat: 28.82899891, lng: -17.83991170, url: 'https://dependencialapalma.com/red-insular/mayores/centro-de-dia-de-gallegos/', municipio: 'barlovento', area: 1, tipo_area: 2, requerimiento: 0, perfil: 0},
+        {nombre: 'Centro de Día Tijarafe', descripcion: 'Atención Diurna', lat: 28.71034870, lng: -17.95652530, url: 'https://dependencialapalma.com/red-insular/mayores/centro-de-dia-de-tijarafe/', municipio: 'tijarafe', area: 1, tipo_area: 2, requerimiento: 0, perfil: 0},
+        {nombre: 'Centro de Día Tazacorte', descripcion: 'Atención Diurna', lat: 28.64435000, lng: -17.93382850, url: 'https://dependencialapalma.com/red-insular/mayores/centro-de-dia-tazacorte/', municipio: 'tazacorte', area: 1, tipo_area: 2, requerimiento: 0, perfil: 0},
+        {nombre: 'Centro de Día Barlovento', descripcion: 'Atención Diurna', lat: 28.82844060, lng: -17.80374097, url: 'https://dependencialapalma.com/red-insular/mayores/centro-de-dia-de-barlovento/', municipio: 'barlovento', area: 1, tipo_area: 2, requerimiento: 0, perfil: 0},
+        {nombre: 'Centro de Día Villa de Mazo', descripcion: 'Atención Diurna', lat: 28.60424897, lng: -17.77959739, url: 'https://dependencialapalma.com/red-insular/mayores/centro-de-dia-de-villa-de-mazo/', municipio: 'mazo', area: 1, tipo_area: 2, requerimiento: 0, perfil: 0},
+        {nombre: 'Centro de Día Breña Alta', descripcion: 'Atención Diurna', lat: 28.66189032, lng: -17.78810882, url: 'https://dependencialapalma.com/red-insular/mayores/centro-de-dia-de-brena-alta/', municipio: 'brena-alta', area: 1, tipo_area: 2, requerimiento: 0, perfil: 0},
+        {nombre: 'Centro de Día Puntallana', descripcion: 'Atención Diurna', lat: 28.73959180, lng: -17.74573970, url: 'https://dependencialapalma.com/red-insular/mayores/centro-de-dia-de-puntallana/', municipio: 'puntallana', area: 1, tipo_area: 2, requerimiento: 0, perfil: 0},
+        {nombre: 'Centro de Día Breña Baja', descripcion: 'Atención Diurna', lat: 28.64116645, lng: -17.78192483, url: 'https://dependencialapalma.com/red-insular/mayores/centro-de-dia-de-brena-baja/', municipio: 'brena-baja', area: 2, tipo_area: 2, requerimiento: 0, perfil: 2},
+        {nombre: 'Centro de Día El Paso', descripcion: 'Atención Diurna', lat: 28.65277244, lng: -17.88056996, url: 'https://dependencialapalma.com/red-insular/mayores/centro-de-dia-de-el-paso/', municipio: 'el-paso', area: 1, tipo_area: 2, requerimiento: 0, perfil: 0},
+        {nombre: 'AFA La Palma', descripcion: 'Asociación Alzheimer', lat: 28.65839130, lng: -17.90352780, url: 'https://dependencialapalma.com/red-insular/mayores/asociacion-de-familiares-de-enfermos-de-alzheimer-afa-la-palma/', municipio: 'los-llanos', area: 1, tipo_area: 2, requerimiento: 0, perfil: 2},
+        {nombre: 'Centro Residencial Triana', descripcion: 'Residencia Discapacidad', lat: 28.65059708, lng: -17.90929440, url: 'https://dependencialapalma.com/red-insular/discapacidad/residencia-triana/', municipio: 'los-llanos', area: 2, tipo_area: 1, requerimiento: 4, perfil: 0},
+        {nombre: 'Centro de Día Triana', descripcion: 'Atención Especializada', lat: 28.65016620, lng: -17.90903192, url: 'https://dependencialapalma.com/red-insular/discapacidad/centro-de-dia-triana/', municipio: 'los-llanos', area: 2, tipo_area: 2, requerimiento: 0, perfil: 2},
+        {nombre: 'Centro Residencial Nina Jaubert (Discapacidad)', descripcion: 'Residencia Discapacidad', lat: 28.64460464, lng: -17.78749567, url: 'https://dependencialapalma.com/red-insular/discapacidad/residencia-nina-jaubert/', municipio: 'brena-alta', area: 2, tipo_area: 1, requerimiento: 3, perfil: 7},
+        {nombre: 'Residencia Villaflora', descripcion: 'Rehabilitación Psicosocial', lat: 28.65612464, lng: -17.76796509, url: 'https://dependencialapalma.com/red-insular/discapacidad/residencia-villaflora/', municipio: 'brena-baja', area: 2, tipo_area: 1, requerimiento: 0, perfil: 9},
+        {nombre: 'Hogar Funcional Mi Casa', descripcion: 'Discapacidad', lat: 28.66115176, lng: -17.91168512, url: 'https://dependencialapalma.com/red-insular/discapacidad/proyecto-mi-casa/', municipio: 'los-llanos', area: 2, tipo_area: 3, requerimiento: 4, perfil: 0},
+        {nombre: 'Centro ocupacional Garehagua', descripcion: 'Discapacidad', lat: 28.60493951, lng: -17.77800525, url: 'https://dependencialapalma.com/red-insular/discapacidad/centro-ocupacional-garehagua/', municipio: 'mazo', area: 2, tipo_area: 2, requerimiento: 0, perfil: 2},
+        {nombre: 'Centro ocupacional La Tisera', descripcion: 'Discapacidad', lat: 28.80476820, lng: -17.77245570, url: 'https://dependencialapalma.com/red-insular/discapacidad/centro-ocupacional-la-tisera/', municipio: 'san-andres', area: 2, tipo_area: 2, requerimiento: 0, perfil: 2},
+        {nombre: 'Centro ocupacional Noroeste-La Traviesa', descripcion: 'Discapacidad', lat: 28.76536310, lng: -17.97836890, url: 'https://dependencialapalma.com/red-insular/discapacidad/centro-ocupacional-la-traviesa/', municipio: 'puntagorda', area: 2, tipo_area: 2, requerimiento: 0, perfil: 2},
+        {nombre: 'Centro ocupacional Breña Alta', descripcion: 'Discapacidad', lat: 28.66257967, lng: -17.78299055, url: 'https://dependencialapalma.com/red-insular/discapacidad/centro-ocupacional-brena-alta/', municipio: 'brena-alta', area: 2, tipo_area: 2, requerimiento: 0, perfil: 2},
+        {nombre: 'Centro ocupacional Taburiente', descripcion: 'Discapacidad', lat: 28.66200824, lng: -17.91206289, url: 'https://dependencialapalma.com/red-insular/discapacidad/centro-ocupacional-taburiente/', municipio: 'los-llanos', area: 2, tipo_area: 2, requerimiento: 0, perfil: 2},
+        {nombre: 'Centro de Día NEP', descripcion: 'Discapacidad', lat: 28.58559414, lng: -17.88353542, url: 'https://dependencialapalma.com/red-insular/discapacidad/centro-de-dia-nep/', municipio: 'los-llanos', area: 2, tipo_area: 2, requerimiento: 0, perfil: 2},
+        {nombre: 'Centro de Día Dorador', descripcion: 'Discapacidad', lat: 28.70185720, lng: -17.77271520, url: 'https://dependencialapalma.com/red-insular/discapacidad/centro-de-dia-dorador/', municipio: 'santa-cruz', area: 2, tipo_area: 2, requerimiento: 0, perfil: 2},
+        {nombre: 'Centro de rehabilitación psicosocial Los Pedregales', descripcion: 'Discapacidad', lat: 28.66575592, lng: -17.90976440, url: 'https://dependencialapalma.com/red-insular/discapacidad/centro-de-rehabilitacion-psicosocial-los-pedregales/', municipio: 'los-llanos', area: 2, tipo_area: 2, requerimiento: 0, perfil: 9},
+        {nombre: 'Fundación Canaria Isonorte', descripcion: 'Servicio de Autonomía Personal', lat: 28.80530583, lng: -17.77511368, url: 'https://dependencialapalma.com/red-insular/mayores/servicio-de-promocion-de-la-autonomia-personal-para-personas-mayores-de-la-fundacion-canaria-isonorte/', municipio: 'san-andres', area: 2, tipo_area: 2, requerimiento: 0, perfil: 9}
+    ];
 
     var mapaCalles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' });
     var mapaSatelite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: 'Tiles &copy; Esri' });
@@ -402,7 +392,7 @@ $centros_lista = [
         });
 
         if (totalListados === 0) {
-            contenedorLista.innerHTML = `<div class="sin-resultados">No se encontraron centros con los criterios seleccionados.</div>`;
+            contenedorLista.innerHTML = `<div style="padding: 20px; color: #64748b; font-size: 13px;">No se encontraron centros con los criterios seleccionados.</div>`;
         }
     }
 
