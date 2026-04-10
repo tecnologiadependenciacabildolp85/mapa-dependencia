@@ -5,142 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Red Insular - La Palma</title>
     
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css">
 
     <style>
-        body { 
-            margin: 0; 
-            padding: 20px; 
-            font-family: 'Segoe UI', sans-serif; 
-            background-color: #f4f7f6; 
-        }
-        .container { 
-            max-width: 1400px; 
-            margin: auto; 
-        }
-        .titulo-principal { 
-            text-align: center; 
-            color: #2c3e50; 
-            font-size: 20px; 
-            margin: 0 0 15px 0; 
-            font-weight: bold; 
-        }
-        .contenido-dinamico { 
-            display: grid; 
-            grid-template-columns: 380px 1fr; 
-            gap: 15px; 
-            height: calc(100vh - 100px); 
-            min-height: 600px; 
-        }
-        .sidebar-izquierdo { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 15px; 
-            height: 100%; 
-            overflow: hidden; 
-        }
-        .filtros-container { 
-            background: white; 
-            padding: 18px; 
-            border-radius: 12px; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 12px; 
-        }
-        .filtro-municipio-completo { 
-            grid-column: 1 / -1; 
-        }
-        .logo-dependencia { 
-            grid-column: 1 / -1; 
-            max-width: 100%; 
-            height: auto; 
-            max-height: 80px; 
-            margin: 0 auto 10px auto; 
-            object-fit: contain; 
-        }
-        .campo-filtro { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 5px; 
-        }
-        label { 
-            font-size: 11px; 
-            color: #4a5568; 
-            font-weight: 600; 
-            text-transform: uppercase; 
-            letter-spacing: 0.4px; 
-        }
-        select { 
-            width: 100%; 
-            padding: 8px 10px; 
-            border-radius: 6px; 
-            border: 1px solid #cbd5e1; 
-            font-size: 13px; 
-            background-color: #fff; 
-            height: 38px; 
-            box-sizing: border-box; 
-            cursor: pointer; 
-        }
-        .seccion-lista { 
-            background: white; 
-            border-radius: 12px; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
-            display: flex; 
-            flex-direction: column; 
-            overflow: hidden; 
-            flex-grow: 1; 
-        }
-        .seccion-lista h2 { 
-            font-size: 16px; 
-            padding: 15px 15px 0 15px; 
-            margin: 0; 
-            color: #2c3e50; 
-        }
-        #lista-centros { 
-            flex-grow: 1; 
-            overflow-y: auto; 
-            padding: 15px; 
-        }
-        .tarjeta-centro { 
-            background: #fff; 
-            border: 1px solid #e0e6ed; 
-            border-radius: 8px; 
-            padding: 15px; 
-            margin-bottom: 15px; 
-            transition: transform 0.2s, box-shadow 0.2s; 
-        }
-        .tarjeta-centro:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
-            cursor: pointer; 
-        }
+        body { margin: 0; padding: 20px; font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; }
+        .container { max-width: 1400px; margin: auto; }
+        .titulo-principal { text-align: center; color: #2c3e50; font-size: 20px; margin: 0 0 15px 0; font-weight: bold; }
+        .contenido-dinamico { display: grid; grid-template-columns: 380px 1fr; gap: 15px; height: calc(100vh - 100px); min-height: 600px; }
+        .sidebar-izquierdo { display: flex; flex-direction: column; gap: 15px; height: 100%; overflow: hidden; }
+        .filtros-container { background: white; padding: 18px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .filtro-municipio-completo { grid-column: 1 / -1; }
+        .logo-dependencia { grid-column: 1 / -1; max-width: 100%; height: auto; max-height: 80px; margin: 0 auto 10px auto; object-fit: contain; }
+        .campo-filtro { display: flex; flex-direction: column; gap: 5px; }
+        label { font-size: 11px; color: #4a5568; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
+        select { width: 100%; padding: 8px 10px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 13px; background-color: #fff; height: 38px; box-sizing: border-box; cursor: pointer; }
+        .seccion-lista { background: white; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; flex-grow: 1; }
+        .seccion-lista h2 { font-size: 16px; padding: 15px 15px 0 15px; margin: 0; color: #2c3e50; }
+        #lista-centros { flex-grow: 1; overflow-y: auto; padding: 15px; }
+        .tarjeta-centro { background: #fff; border: 1px solid #e0e6ed; border-radius: 8px; padding: 15px; margin-bottom: 15px; transition: transform 0.2s, box-shadow 0.2s; }
+        .tarjeta-centro:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.08); cursor: pointer; }
         .tarjeta-centro h3 { margin: 0 0 8px 0; font-size: 14px; color: #2c3e50; }
-        .tarjeta-centro p { margin: 0 0 10px 0; font-size: 12px; color: #64748b; }
+        .tarjeta-centro p { margin: 0 0 10px 0; font-size: 12px; color: #64748b; line-height: 1.4; }
         .btn-enlace { font-size: 12px; color: #2563eb; text-decoration: none; font-weight: bold; }
-        #contenedor-mapa { 
-            height: 100%; 
-            width: 100%; 
-            border-radius: 12px; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15); 
-            border: 4px solid white; 
-        }
-        .img-icon-custom {
-            width: 18px;
-            height: 18px;
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            object-fit: contain;
-        }
-        @media (max-width: 900px) {
-            .contenido-dinamico { grid-template-columns: 1fr; height: auto; }
-            .seccion-lista { height: 400px; }
-            #contenedor-mapa { height: 450px; }
-        }
+        #contenedor-mapa { height: 100%; width: 100%; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); border: 4px solid white; }
+        .img-icon-custom { width: 18px; height: 18px; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); object-fit: contain; }
+        @media (max-width: 900px) { .contenido-dinamico { grid-template-columns: 1fr; height: auto; } .seccion-lista { height: 400px; } #contenedor-mapa { height: 450px; } }
     </style>
 </head>
 <body>
@@ -199,7 +92,7 @@
                         <option value="8">Teleasistencia avanzada</option>
                     </select>
                 </div>
-
+                
                 <div class="campo-filtro">
                     <label>Requerimiento:</label>
                     <select id="filtro-requerimiento" onchange="actualizarMapa()">
@@ -244,7 +137,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
 
 <script>
-    // Datos convertidos de PHP a JavaScript
     const centrosArray = [
         {nombre: 'Centro Residencial La Dehesa', descripcion: 'S.C. de La Palma - Residencia de Mayores', lat: 28.69652670, lng: -17.76998623, url: 'https://dependencialapalma.com/red-insular/mayores/residencia-la-dehesa/', municipio: 'santa-cruz', area: 1, tipo_area: 1, requerimiento: 4, perfil: 0},
         {nombre: 'Centro Residencial Puntallana', descripcion: 'Residencia de Mayores', lat: 28.73974236, lng: -17.74573970, url: 'https://dependencialapalma.com/red-insular/mayores/residencia-puntallana/', municipio: 'puntallana', area: 1, tipo_area: 1, requerimiento: 4, perfil: 0},
@@ -290,13 +182,8 @@
     var mapaCalles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' });
     var mapaSatelite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: 'Tiles &copy; Esri' });
 
-    var map = L.map('contenedor-mapa', {
-        center: [28.66, -17.86],
-        zoom: 11,
-        layers: [mapaCalles]
-    });
-
-    L.control.layers({ "Mapa de Calles": mapaCalles, "Vista Satélite": mapaSatelite }).addTo(map);
+    var map = L.map('contenedor-mapa', { center: [28.66, -17.86], zoom: 11, layers: [mapaCalles] });
+    L.control.layers({ "Mapa": mapaCalles, "Satélite": mapaSatelite }).addTo(map);
 
     const municipiosCoordenadas = {
         "la-palma": { lat: 28.66, lng: -17.86, zoom: 11 },
@@ -321,12 +208,7 @@
     function inicializarMarcadores() {
         centrosArray.forEach(function(centro) {
             let color = (centro.area === 1) ? 'green' : 'blue';
-            let iconConfig = L.AwesomeMarkers.icon({
-                icon: 'fa-cog',
-                markerColor: color,
-                prefix: 'fa'
-            });
-
+            let iconConfig = L.AwesomeMarkers.icon({ icon: 'fa-cog', markerColor: color, prefix: 'fa' });
             let marker = L.marker([centro.lat, centro.lng], {icon: iconConfig});
 
             marker.on('add', function() {
@@ -335,21 +217,14 @@
                     let iconHtml = markerElement.querySelector('i');
                     if (iconHtml) {
                         iconHtml.className = ''; 
-                        iconHtml.innerHTML = '<img src="icon.ico" class="img-icon-custom" alt="icon">';
+                        // Sistema de respaldo: si favicon.ico falla, usa el icono por defecto de Leaflet
+                        iconHtml.innerHTML = `<img src="favicon.ico" class="img-icon-custom" alt="icon" onerror="this.src='https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png'; this.style.width='12px'; this.style.top='5px';">`;
                     }
                 }
             });
 
-            marker.bindTooltip(`<b>${centro.nombre}</b>`, {
-                permanent: false,
-                direction: 'top',
-                opacity: 0.9
-            });
-
-            marker.on('click', function() {
-                if (centro.url) window.open(centro.url, '_blank');
-            });
-
+            marker.bindTooltip(`<b>${centro.nombre}</b>`, { permanent: false, direction: 'top', opacity: 0.9 });
+            marker.on('click', function() { if (centro.url) window.open(centro.url, '_blank'); });
             todosLosMarcadores.push({ marker: marker, ...centro });
         });
     }
@@ -378,12 +253,11 @@
             if (matchMun && matchArea && matchTipo && matchReq && matchPerf) {
                 map.addLayer(item.marker);
                 totalListados++;
-
                 contenedorLista.innerHTML += `
                     <div class="tarjeta-centro" onclick="hacerFocoMapa(${item.lat}, ${item.lng})">
                         <h3>${item.nombre}</h3>
                         <p>${item.descripcion}</p>
-                        ${item.url ? `<a href="${item.url}" target="_blank" class="btn-enlace">Visitar web oficial</a>` : ''}
+                        ${item.url ? `<a href="${item.url}" target="_blank" class="btn-enlace">Saber más...</a>` : ''}
                     </div>
                 `;
             } else {
@@ -392,13 +266,11 @@
         });
 
         if (totalListados === 0) {
-            contenedorLista.innerHTML = `<div style="padding: 20px; color: #64748b; font-size: 13px;">No se encontraron centros con los criterios seleccionados.</div>`;
+            contenedorLista.innerHTML = `<div style="padding:20px; color:#64748b; font-size:13px;">No hay resultados para esta búsqueda.</div>`;
         }
     }
 
-    function hacerFocoMapa(lat, lng) {
-        map.flyTo([lat, lng], 16);
-    }
+    function hacerFocoMapa(lat, lng) { map.flyTo([lat, lng], 16); }
 
     inicializarMarcadores();
     actualizarMapa();
