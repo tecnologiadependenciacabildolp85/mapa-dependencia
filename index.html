@@ -6,7 +6,6 @@
     <title>Red Insular - La Palma</title>
     
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css">
@@ -23,16 +22,18 @@
         .campo-filtro { display: flex; flex-direction: column; gap: 5px; }
         label { font-size: 11px; color: #4a5568; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
         select { width: 100%; padding: 8px 10px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 13px; background-color: #fff; height: 38px; box-sizing: border-box; cursor: pointer; }
+        select option { padding: 8px; }
         .seccion-lista { background: white; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column; overflow: hidden; flex-grow: 1; }
         .seccion-lista h2 { font-size: 16px; padding: 15px 15px 0 15px; margin: 0; color: #2c3e50; }
         #lista-centros { flex-grow: 1; overflow-y: auto; padding: 15px; }
         .tarjeta-centro { background: #fff; border: 1px solid #e0e6ed; border-radius: 8px; padding: 15px; margin-bottom: 15px; transition: transform 0.2s, box-shadow 0.2s; }
-        .tarjeta-centro:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.08); cursor: pointer; }
+        .tarjeta-centro:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-color: #cbd5e1; cursor: pointer; }
         .tarjeta-centro h3 { margin: 0 0 8px 0; font-size: 14px; color: #2c3e50; }
         .tarjeta-centro p { margin: 0 0 10px 0; font-size: 12px; color: #64748b; line-height: 1.4; }
         .btn-enlace { font-size: 12px; color: #2563eb; text-decoration: none; font-weight: bold; }
         #contenedor-mapa { height: 100%; width: 100%; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); border: 4px solid white; }
         .img-icon-custom { width: 18px; height: 18px; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); object-fit: contain; }
+        .sin-resultados { padding: 20px; color: #64748b; font-size: 13px; text-align: center; }
         @media (max-width: 900px) { .contenido-dinamico { grid-template-columns: 1fr; height: auto; } .seccion-lista { height: 400px; } #contenedor-mapa { height: 450px; } }
     </style>
 </head>
@@ -84,7 +85,7 @@
                         <option value="0">Cualquiera</option>
                         <option value="1">Residencia</option>
                         <option value="2">Diurna</option>
-                        <option value="3">Alojamiento tutelado</option>
+                        <option value="3">Hogar funcional</option>
                         <option value="4">Domicilio</option>
                         <option value="5">SPAP</option>
                         <option value="6">Teleasistencia basica</option>
@@ -137,6 +138,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
 
 <script>
+    // 📋 LISTA COMPLETA DE CENTROS ACTUALIZADA
     const centrosArray = [
         {nombre: 'Centro Residencial La Dehesa', descripcion: 'S.C. de La Palma - Residencia de Mayores', lat: 28.69652670, lng: -17.76998623, url: 'https://dependencialapalma.com/red-insular/mayores/residencia-la-dehesa/', municipio: 'santa-cruz', area: 1, tipo_area: 1, requerimiento: 4, perfil: 0},
         {nombre: 'Centro Residencial Puntallana', descripcion: 'Residencia de Mayores', lat: 28.73974236, lng: -17.74573970, url: 'https://dependencialapalma.com/red-insular/mayores/residencia-puntallana/', municipio: 'puntallana', area: 1, tipo_area: 1, requerimiento: 4, perfil: 0},
@@ -176,7 +178,31 @@
         {nombre: 'Centro de Día NEP', descripcion: 'Discapacidad', lat: 28.58559414, lng: -17.88353542, url: 'https://dependencialapalma.com/red-insular/discapacidad/centro-de-dia-nep/', municipio: 'los-llanos', area: 2, tipo_area: 2, requerimiento: 0, perfil: 2},
         {nombre: 'Centro de Día Dorador', descripcion: 'Discapacidad', lat: 28.70185720, lng: -17.77271520, url: 'https://dependencialapalma.com/red-insular/discapacidad/centro-de-dia-dorador/', municipio: 'santa-cruz', area: 2, tipo_area: 2, requerimiento: 0, perfil: 2},
         {nombre: 'Centro de rehabilitación psicosocial Los Pedregales', descripcion: 'Discapacidad', lat: 28.66575592, lng: -17.90976440, url: 'https://dependencialapalma.com/red-insular/discapacidad/centro-de-rehabilitacion-psicosocial-los-pedregales/', municipio: 'los-llanos', area: 2, tipo_area: 2, requerimiento: 0, perfil: 9},
-        {nombre: 'Fundación Canaria Isonorte', descripcion: 'Servicio de Autonomía Personal', lat: 28.80530583, lng: -17.77511368, url: 'https://dependencialapalma.com/red-insular/mayores/servicio-de-promocion-de-la-autonomia-personal-para-personas-mayores-de-la-fundacion-canaria-isonorte/', municipio: 'san-andres', area: 2, tipo_area: 2, requerimiento: 0, perfil: 9}
+        {nombre: 'Fundación Canaria Isonorte', descripcion: 'Servicio de Autonomía Personal', lat: 28.80530583, lng: -17.77511368, url: 'https://dependencialapalma.com/red-insular/mayores/servicio-de-promocion-de-la-autonomia-personal-para-personas-mayores-de-la-fundacion-canaria-isonorte/', municipio: 'san-andres', area: 2, tipo_area: 2, requerimiento: 0, perfil: 9},
+        
+        // 🆕 Servicios SAD por municipio
+        {nombre: '(SAD) Ayuntamiento de Barlovento', descripcion: 'Servicio de Atención en Domicilio', lat: 28.82965564546899, lng: -17.803081044093226, url: 'https://dependencialapalma.com/red-insular/servicio-de-atencion-en-domicilio/', municipio: 'barlovento', area: 1, tipo_area: 7, requerimiento: 0, perfil: 11},
+        {nombre: '(SAD) Ayuntamiento de Breña Alta', descripcion: 'Servicio de Atención en Domicilio', lat: 28.66333299954294, lng: -17.786951586730687, url: 'https://dependencialapalma.com/red-insular/servicio-de-atencion-en-domicilio/', municipio: 'brena-alta', area: 1, tipo_area: 7, requerimiento: 0, perfil: 11},
+        {nombre: '(SAD) Ayuntamiento de Breña Baja', descripcion: 'Servicio de Atención en Domicilio', lat: 28.645669459603788, lng: -17.775585078266502, url: 'https://dependencialapalma.com/red-insular/servicio-de-atencion-en-domicilio/', municipio: 'brena-baja', area: 1, tipo_area: 7, requerimiento: 0, perfil: 11},
+        {nombre: '(SAD) Ayuntamiento de El Paso', descripcion: 'Servicio de Atención en Domicilio', lat: 28.65225995825525, lng: -17.88030115948303, url: 'https://dependencialapalma.com/red-insular/servicio-de-atencion-en-domicilio/', municipio: 'el-paso', area: 1, tipo_area: 7, requerimiento: 0, perfil: 11},
+        {nombre: '(SAD) Ayuntamiento de Fuencaliente de La Palma', descripcion: 'Servicio de Atención en Domicilio', lat: 28.49475391069728, lng: -17.84515070937153, url: 'https://dependencialapalma.com/red-insular/servicio-de-atencion-en-domicilio/', municipio: 'fuencaliente', area: 1, tipo_area: 7, requerimiento: 0, perfil: 11},
+        {nombre: '(SAD) Ayuntamiento de Los Llanos de Aridane', descripcion: 'Servicio de Atención en Domicilio', lat: 28.658899651659848, lng: -17.91313168827225, url: 'https://dependencialapalma.com/red-insular/servicio-de-atencion-en-domicilio/', municipio: 'los-llanos', area: 1, tipo_area: 7, requerimiento: 0, perfil: 11},
+        {nombre: '(SAD) Ayuntamiento de Puntagorda', descripcion: 'Servicio de Atención en Domicilio', lat: 28.766179286219156, lng: -17.97988500360885, url: 'https://dependencialapalma.com/red-insular/servicio-de-atencion-en-domicilio/', municipio: 'puntagorda', area: 1, tipo_area: 7, requerimiento: 0, perfil: 11},
+        {nombre: '(SAD) Ayuntamiento de Puntallana', descripcion: 'Servicio de Atención en Domicilio', lat: 28.739865312687016, lng: -17.744806172930584, url: 'https://dependencialapalma.com/red-insular/servicio-de-atencion-en-domicilio/', municipio: 'puntallana', area: 1, tipo_area: 7, requerimiento: 0, perfil: 11},
+        {nombre: '(SAD) Ayuntamiento de San Andrés y Sauces', descripcion: 'Servicio de Atención en Domicilio', lat: 28.804632840775877, lng: -17.774308051308775, url: 'https://dependencialapalma.com/red-insular/servicio-de-atencion-en-domicilio/', municipio: 'san-andres', area: 1, tipo_area: 7, requerimiento: 0, perfil: 11},
+        {nombre: '(SAD) Ayuntamiento de Santa Cruz de La Palma', descripcion: 'Servicio de Atención en Domicilio', lat: 28.683477618766663, lng: -17.764789076620424, url: 'https://dependencialapalma.com/red-insular/servicio-de-atencion-en-domicilio/', municipio: 'santa-cruz', area: 1, tipo_area: 7, requerimiento: 0, perfil: 11},
+        {nombre: '(SAD) Ayuntamiento de Tijarafe', descripcion: 'Servicio de Atención en Domicilio', lat: 28.711695011585597, lng: -17.955930045940544, url: 'https://dependencialapalma.com/red-insular/servicio-de-atencion-en-domicilio/', municipio: 'tijarafe', area: 1, tipo_area: 7, requerimiento: 0, perfil: 11},
+        {nombre: '(SAD) Ayuntamiento de Garafía', descripcion: 'Servicio de Atención en Domicilio', lat: 28.830056355545562, lng: -17.945185732442088, url: 'https://dependencialapalma.com/red-insular/servicio-de-atencion-en-domicilio/', municipio: 'garafia', area: 1, tipo_area: 7, requerimiento: 0, perfil: 11},
+        {nombre: '(SAD) Ayuntamiento de Villa de Mazo', descripcion: 'Servicio de Atención en Domicilio', lat: 28.606286634971887, lng: -17.77963272251381, url: 'https://dependencialapalma.com/red-insular/servicio-de-atencion-en-domicilio/', municipio: 'mazo', area: 1, tipo_area: 7, requerimiento: 0, perfil: 11},
+        {nombre: '(SAD) Ayuntamiento de Tazacorte', descripcion: 'Servicio de Atención en Domicilio', lat: 28.64103060594012, lng: -17.933213917107597, url: 'https://dependencialapalma.com/red-insular/servicio-de-atencion-en-domicilio/', municipio: 'tazacorte', area: 1, tipo_area: 7, requerimiento: 0, perfil: 11},
+        
+        // 🆕 Servicios FUNCATAES
+        {nombre: 'Servicio de atención temprana FUNCATAES menores de 0 a 6 años (Santa Cruz)', descripcion: 'Servicios de Autonomía Personal', lat: 28.68830224135166, lng: -17.76366029774287, url: 'https://dependencialapalma.com/red-insular/discapacidad/', municipio: 'santa-cruz', area: 2, tipo_area: 5, requerimiento: 0, perfil: 11},
+        {nombre: 'Servicio de atención temprana FUNCATAES menores de 0 a 6 años (Los LLanos)', descripcion: 'Servicios de Autonomía Personal', lat: 28.661180138281903, lng: -17.912075833144165, url: 'https://dependencialapalma.com/red-insular/discapacidad/servicio-de-atencion-temprana-funcataes-para-menores-entre-0-y-6-anos-con-trastornos-en-su-desarrollo-o-que-tienen-riesgo-de-padecerlos/', municipio: 'los-llanos', area: 2, tipo_area: 5, requerimiento: 0, perfil: 11},
+        {nombre: 'Servicio de promoción de la autonomía personal FUNCATAES menores de 7 a 17 años (Santa Cruz)', descripcion: 'Servicios de Autonomía Personal', lat: 28.68823495989467, lng: -17.763571182214136, url: 'https://dependencialapalma.com/red-insular/discapacidad/', municipio: 'santa-cruz', area: 2, tipo_area: 5, requerimiento: 0, perfil: 11},
+        {nombre: 'Servicio de promoción de la autonomía personal FUNCATAES menores de 7 a 17 años (Los LLanos)', descripcion: 'Servicios de Autonomía Personal', lat: 28.661212609551633, lng: -17.91196489069405, url: 'https://dependencialapalma.com/red-insular/discapacidad/servicio-de-promocion-de-la-autonomia-personal-funcataes-para-menores-entre-7-y-17-anos/', municipio: 'los-llanos', area: 2, tipo_area: 5, requerimiento: 0, perfil: 11},
+        {nombre: 'Servicio de promoción de la autonomía personal FUNCATAES mayores de 18 años (Santa Cruz)', descripcion: 'Servicios de Autonomía Personal', lat: 28.68817807411221, lng: -17.763506709292514, url: 'https://dependencialapalma.com/red-insular/discapacidad/', municipio: 'santa-cruz', area: 2, tipo_area: 5, requerimiento: 0, perfil: 11},
+        {nombre: 'Servicio de promoción de la autonomía personal FUNCATAES mayores de 18 años (Los LLanos)', descripcion: 'Servicios de Autonomía Personal', lat: 28.6612605568352, lng: -17.912254041103804, url: 'https://dependencialapalma.com/red-insular/discapacidad/servicio-de-promocion-de-la-autonomia-personal-funcataes-para-personas-con-discapacidad-intelectual/', municipio: 'los-llanos', area: 2, tipo_area: 5, requerimiento: 0, perfil: 11}
     ];
 
     var mapaCalles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' });
@@ -207,17 +233,19 @@
 
     function inicializarMarcadores() {
         centrosArray.forEach(function(centro) {
-            let color = (centro.area === 1) ? 'green' : 'blue';
+            // Colores por área: 1=Mayores(green), 2=Discapacidad(blue), 3=Salud mental(red), 4=M/D(orange)
+            const colores = { 1: 'green', 2: 'blue', 3: 'red', 4: 'orange' };
+            let color = colores[centro.area] || 'gray';
             let iconConfig = L.AwesomeMarkers.icon({ icon: 'fa-cog', markerColor: color, prefix: 'fa' });
             let marker = L.marker([centro.lat, centro.lng], {icon: iconConfig});
 
+            // Sistema de respaldo para el favicon del marcador
             marker.on('add', function() {
                 let markerElement = this.getElement();
                 if (markerElement) {
                     let iconHtml = markerElement.querySelector('i');
                     if (iconHtml) {
                         iconHtml.className = ''; 
-                        // Sistema de respaldo: si favicon.ico falla, usa el icono por defecto de Leaflet
                         iconHtml.innerHTML = `<img src="favicon.ico" class="img-icon-custom" alt="icon" onerror="this.src='https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png'; this.style.width='12px'; this.style.top='5px';">`;
                     }
                 }
@@ -257,7 +285,7 @@
                     <div class="tarjeta-centro" onclick="hacerFocoMapa(${item.lat}, ${item.lng})">
                         <h3>${item.nombre}</h3>
                         <p>${item.descripcion}</p>
-                        ${item.url ? `<a href="${item.url}" target="_blank" class="btn-enlace">Saber más...</a>` : ''}
+                        ${item.url ? `<a href="${item.url}" target="_blank" class="btn-enlace">Visitar web oficial</a>` : ''}
                     </div>
                 `;
             } else {
@@ -266,12 +294,13 @@
         });
 
         if (totalListados === 0) {
-            contenedorLista.innerHTML = `<div style="padding:20px; color:#64748b; font-size:13px;">No hay resultados para esta búsqueda.</div>`;
+            contenedorLista.innerHTML = `<div class="sin-resultados">No hay resultados para esta búsqueda.</div>`;
         }
     }
 
     function hacerFocoMapa(lat, lng) { map.flyTo([lat, lng], 16); }
 
+    // Inicialización
     inicializarMarcadores();
     actualizarMapa();
 </script>
